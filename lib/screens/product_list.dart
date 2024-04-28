@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:badges/badges.dart' as badges;
+
 import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_cart_provider/cart_provider/product_cart_provider.dart';
 import 'package:shopping_cart_provider/database/db_helper.dart';
 import 'package:shopping_cart_provider/model/product_model.dart';
+
 class ProductList extends StatefulWidget {
   const ProductList({super.key});
 
@@ -16,7 +18,9 @@ class ProductList extends StatefulWidget {
 
 class _ProductListState extends State<ProductList> {
 
+
   dbHelper? db = dbHelper();
+
   List<String> productName = ['Mango' , 'Orange' , 'Grapes' , 'Banana' , 'Kiwi' , 'Pomogranate','Apple','Peach'] ;
   List<String> productUnit = ['KG' , 'Dozen' , 'KG' , 'Dozen' , 'KG' , 'KG','KG','KG'] ;
   List<int> productPrice = [10, 20 , 30 , 40 , 50, 60 , 70 ,80] ;
@@ -35,7 +39,9 @@ class _ProductListState extends State<ProductList> {
 
   @override
   Widget build(BuildContext context) {
+
     final cart = Provider.of<ProductCartProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.orange,
@@ -46,7 +52,9 @@ class _ProductListState extends State<ProductList> {
             onTap: (){
               // Navigator.push(context,MaterialPageRoute(builder: (context) => CartScreen()));
             },
+
             child:  Center(
+
               child: badges.Badge(
                 child: Icon(Icons.shopping_bag_outlined,color: Colors.white,),
                 showBadge: true,
@@ -61,6 +69,7 @@ class _ProductListState extends State<ProductList> {
                     return Text(value.getCounter().toString(),style: TextStyle(color: Colors.white),);
                     },
               ),
+
                 badgeAnimation: badges.BadgeAnimation.rotation(
                   animationDuration: Duration(seconds: 1),
                   colorChangeAnimationDuration: Duration(seconds: 1),
@@ -69,10 +78,7 @@ class _ProductListState extends State<ProductList> {
                   colorChangeAnimationCurve: Curves.easeInCubic,
                 ),
               ),
-            ),
-          ),
-
-
+            ),),
           SizedBox(width: 20.0)
         ],
       ),
@@ -116,6 +122,7 @@ class _ProductListState extends State<ProductList> {
 
                         Align(
                           alignment: Alignment.centerRight,
+
                           child: InkWell(
                             onTap: (){
 
@@ -156,6 +163,9 @@ class _ProductListState extends State<ProductList> {
                               child: const Center(
                                 child: Text("Add to cart",style: TextStyle(color: Colors.white),),
                               ),
+
+
+
                             ),
                           ),
                         )
