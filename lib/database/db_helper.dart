@@ -66,15 +66,18 @@ class dbHelper{
       return Future.error("Database is not initialized");
     }
     try {
-      await dbClient.insert('cart', product.toMap());
+      await dbClient.insert('cart', product.toMap(), conflictAlgorithm: ConflictAlgorithm.replace);
       return product;
     } catch (e) {
-      print("Error inserting product: $e");
-      return Future.error("Error inserting product: $e");
+      print("ERROR INSERTING PRODUCT: $e");
+      return Future.error("ERROR INSERTING PRODUCT: $e");
     }
   }
 
-
-
+  Future<List<ProductModel>> getDataOfCart()async{
+    var dbClient = await db;
+    final List<Map<String, Object?>> resultQuery = await dbClient!.query('cart');
+    return resultQuery.map((e) => ProductModel.fromMap(e)).toList();
+  }
 
 }

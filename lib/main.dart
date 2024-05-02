@@ -21,9 +21,9 @@ class MyApp extends StatelessWidget {
             title: 'Flutter Demo',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
-              useMaterial3: true,
+              primarySwatch: Colors.orange,
+              // colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
+              // useMaterial3: true,
             ),
             home: const ProductList(),
           );

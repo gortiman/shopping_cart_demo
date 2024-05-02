@@ -9,6 +9,8 @@ import 'package:shopping_cart_provider/cart_provider/product_cart_provider.dart'
 import 'package:shopping_cart_provider/database/db_helper.dart';
 import 'package:shopping_cart_provider/model/product_model.dart';
 
+import 'cart_screen.dart';
+
 class ProductList extends StatefulWidget {
   const ProductList({super.key});
 
@@ -50,7 +52,7 @@ class _ProductListState extends State<ProductList> {
         actions:  [
           InkWell(
             onTap: (){
-              // Navigator.push(context,MaterialPageRoute(builder: (context) => CartScreen()));
+              Navigator.push(context,MaterialPageRoute(builder: (context) => CartScreen()));
             },
 
             child:  Center(
@@ -149,6 +151,7 @@ class _ProductListState extends State<ProductList> {
                               ).then((value) {
                                 print("Product is added to cart");
                                 cart.addTotalProductPrice(double.parse(productPrice[index].toString()));
+                                cart.addCounter();
                               }).onError((error, stackTrace) {
                                 print("the error found========"+error.toString());
                               });
@@ -163,9 +166,6 @@ class _ProductListState extends State<ProductList> {
                               child: const Center(
                                 child: Text("Add to cart",style: TextStyle(color: Colors.white),),
                               ),
-
-
-
                             ),
                           ),
                         )
